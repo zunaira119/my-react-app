@@ -1,18 +1,19 @@
-import { Component } from "react";
+import {Component} from "react";
 import Slider from './CarouselComponent';
 import Category from './CategoryComponent';
-import Featured  from "./FeaturedComponent";
+import Featured from "./FeaturedComponent";
 
 
-class Home extends Component{
-    render(){
-        return(
-        <div>
+class Home extends Component {
+    render() {
+        return (
+            <div>
                 <Slider/>
                 <Category/>
                 <Featured/>
-    </div>
+            </div>
         );
     }
 }
+
 export default Home;
