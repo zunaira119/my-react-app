@@ -1,5 +1,5 @@
 import {Component} from "react";
-
+import {Link} from 'react-router-dom';
 class ProductCard extends Component {
     render() {
         return (
@@ -12,8 +12,8 @@ class ProductCard extends Component {
                         <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image"/>
                         <div class="mask-icon">
                             <ul>
-                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i
-                                    class="fas fa-eye"></i></a></li>
+                                <li><Link to="/productDetail" data-toggle="tooltip" data-placement="right" title="View"><i
+                                    class="fas fa-eye"></i></Link></li>
                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i
                                     class="fas fa-sync-alt"></i></a></li>
                                 <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i

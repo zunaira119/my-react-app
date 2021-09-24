@@ -8,6 +8,7 @@ import Cart from "./CartComponent";
 import Checkout from "./CheckoutComponent";
 import ContactUs from "./ContactComponent";
 import Products from "./ProductComponent";
+import ProductDetail from "./ProductDetailComponent";
 class Main extends Component {
     render() {
         return (
@@ -21,6 +22,7 @@ class Main extends Component {
                         <Route path='/checkout' component={() => <Checkout/>}/>
                         <Route path='/contactUs' component={() => <ContactUs/>}/>
                         <Route path='/products' component={() => <Products/>}/>
+                        <Route path='/productDetail' component={() => <ProductDetail/>}/>
                         {/* <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />
               <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
               <Route path='/menu/:dishId' component={DishWithId} />
