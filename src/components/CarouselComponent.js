@@ -12,11 +12,11 @@ class Slider extends Component {
                             src="images/banner-01.jpg"
                             alt="First slide"
                         />
-                        <div class="container">
+                        <div className="container">
                             <Carousel.Caption className="caption">
                                 <h1 className=""><strong>First slide label</strong></h1>
                                 <p className="">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                                <p><a className="btn hvr-hover" href="#">Shop New</a></p>
                             </Carousel.Caption>
                         </div>
                     </Carousel.Item>
@@ -27,7 +27,7 @@ class Slider extends Component {
                             alt="Second slide"
                         />
 
-                        <div class="container">
+                        <div className="container">
                             <Carousel.Caption className="caption">
                                 <h1 className=""><strong>First2 slide label</strong></h1>
                                 <p className="">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>

@@ -18,11 +18,11 @@ class Header extends Component {
                     <div className="container">
 
                         <div className="navbar-header">
-                            <button className="navbar-toggler" type="button" data-toggle="collapse"
+                            <Button className="navbar-toggler" type="button" data-toggle="collapse"
                                     data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false"
                                     aria-label="Toggle navigation">
                                 <i className="fa fa-bars"></i>
-                            </button>
+                            </Button>
                             <NavbarBrand className="navbar-brand" href=""><img src="images/logo.png" className="logo"
                                                                                alt=""/></NavbarBrand>
                         </div>
@@ -36,7 +36,7 @@ class Header extends Component {
                                 </NavItem>
                                 <NavItem className="nav-item">
                                     <NavLink to="/products" className="nav-link ">Product</NavLink>
-                                  
+
                                 </NavItem>
                                 <NavItem className="dropdown">
                                     <a href="#" className="nav-link dropdown-toggle arrow"
