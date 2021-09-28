@@ -29,15 +29,12 @@ class Featured extends Component {
                         <div className="col-lg-3 col-md-6 special-grid best-seller">
                            <ProductCard/>
                         </div>
-
                         <div className="col-lg-3 col-md-6 special-grid top-featured">
                         <ProductCard/>
                         </div>
-
                         <div className="col-lg-3 col-md-6 special-grid top-featured">
                         <ProductCard/>
                         </div>
-
                         <div class="col-lg-3 col-md-6 special-grid best-seller">
                         <ProductCard/>
                         </div>

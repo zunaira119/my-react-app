@@ -7,20 +7,24 @@ import About from "./AboutComponent";
 import Cart from "./CartComponent";
 import Checkout from "./CheckoutComponent";
 import ContactUs from "./ContactComponent";
-import Products from "./ProductComponent";
+import Product from "./ProductComponent";
 import ProductDetail from "./ProductDetailComponent";
 import {connect} from 'react-redux';
-import {fetchCategories} from '../redux/ActionCreator';
+import {fetchCategories, fetchProducts} from '../redux/ActionCreator';
 import {actions} from 'react-redux-form';
 
 const mapStateToProps = state => {
     return {
-        categories: state.categories
+        categories: state.categories,
+        products:state.products,
     }
 }
 const mapDispatchToProps = dispatch => ({
     fetchCategories: () => {
         dispatch(fetchCategories())
+    },
+    fetchProducts: () => {
+        dispatch(fetchProducts())
     },
 });
 
@@ -31,9 +35,19 @@ class Main extends Component {
 
     componentDidMount() {
         this.props.fetchCategories();
+        this.props.fetchProducts();
     }
 
     render() {
+        const ProductWithId = ({match}) => {
+            return(
+              <ProductDetail
+               product={this.props.products.products.filter((product) => product._id === match.params.productId)[0]}
+                  isLoading={this.props.products.isLoading}
+                  errMess={this.props.products.errMess}
+                />
+            );
+          };
         return (
             <div>
                 <Header/>
@@ -44,8 +58,11 @@ class Main extends Component {
                         <Route path='/cart' component={() => <Cart/>}/>
                         <Route path='/checkout' component={() => <Checkout/>}/>
                         <Route path='/contactUs' component={() => <ContactUs/>}/>
-                        <Route path='/products' component={() => <Products categories={this.props.categories}/>}/>
-                        <Route path='/productDetail' component={() => <ProductDetail/>}/>
+                        <Route path='/products' component={() => 
+                        <Product categories={this.props.categories}
+                            products = {this.props.products}/>}/>
+                        <Route path='/productDetail/:productId' 
+                        component={ProductWithId}/>
                         {/* <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />
               <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
               <Route path='/menu/:dishId' component={DishWithId} />
