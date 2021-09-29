@@ -1,14 +1,13 @@
-import {Component} from "react";
+import { Component } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-
-class Slider extends Component {
-    render() {
-        return (
-            <div>
-                <Carousel variant="dark">
+class ImageCrousal extends Component{
+    render(){
+        return(
+        <>
+          <Carousel variant="dark">
                     <Carousel.Item className="slides-container">
                         <img
-                            className="d-block w-100"
+                            className="d-block w-100 crosal-img"
                             src="images/banner-01.jpg"
                             alt="First slide"
                         />
@@ -22,7 +21,7 @@ class Slider extends Component {
                     </Carousel.Item>
                     <Carousel.Item className="slides-container">
                         <img
-                            className="d-block w-100"
+                            className="d-block w-100 crosal-img"
                             src="images/banner-02.jpg?text=Second slide&bg=282c34"
                             alt="Second slide"
                         />
@@ -37,7 +36,7 @@ class Slider extends Component {
                     </Carousel.Item>
                     <Carousel.Item className="slides-container">
                         <img
-                            className="d-block w-100"
+                            className="d-block w-100 crosal-img"
                             src="images/banner-03.jpg?text=Third slide&bg=20232a"
                             alt="Third slide"
                         />
@@ -50,10 +49,7 @@ class Slider extends Component {
                         </div>
                     </Carousel.Item>
                 </Carousel>
-
-            </div>
-        );
+        </>);
     }
 }
-
-export default Slider;
+export default ImageCrousal;

@@ -5,8 +5,6 @@ import {
     Form, FormGroup, Input, Label
 } from 'reactstrap';
 import {NavLink, Link} from 'react-router-dom';
-
-
 class Header extends Component {
 
     render() {
