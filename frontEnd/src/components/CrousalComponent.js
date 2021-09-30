@@ -1,10 +1,11 @@
-import { Component } from "react";
+import {Component} from "react";
 import Carousel from 'react-bootstrap/Carousel';
-class ImageCrousal extends Component{
-    render(){
-        return(
-        <>
-          <Carousel variant="dark">
+
+class ImageCarousel extends Component {
+    render() {
+        return (
+            <>
+                <Carousel variant="dark">
                     <Carousel.Item className="slides-container">
                         <img
                             className="d-block w-100 crosal-img"
@@ -14,7 +15,7 @@ class ImageCrousal extends Component{
                         <div className="container">
                             <Carousel.Caption className="caption">
                                 <h1 className=""><strong>First slide label</strong></h1>
-                                <p className="">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                <p className="">Nulla vitae elit libero, <br/> a pharetra augue mollis interdum.</p>
                                 <p><a className="btn hvr-hover" href="#">Shop New</a></p>
                             </Carousel.Caption>
                         </div>
@@ -29,8 +30,8 @@ class ImageCrousal extends Component{
                         <div className="container">
                             <Carousel.Caption className="caption">
                                 <h1 className=""><strong>First2 slide label</strong></h1>
-                                <p className="">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                <p><a class="btn hvr-hover" href="#">Shop New</a></p>
+                                <p className="">Nulla vitae elit libero, <br/> a pharetra augue mollis interdum.</p>
+                                <p><a className="btn hvr-hover" href="#">Shop New</a></p>
                             </Carousel.Caption>
                         </div>
                     </Carousel.Item>
@@ -40,16 +41,17 @@ class ImageCrousal extends Component{
                             src="images/banner-03.jpg?text=Third slide&bg=20232a"
                             alt="Third slide"
                         />
-                        <div class="container">
+                        <div className="container">
                             <Carousel.Caption className="caption">
                                 <h1 className=""><strong>First3 slide label</strong></h1>
-                                <p className="">Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                <p><a class="btn  hvr-hover" href="#">Shop New</a></p>
+                                <p className="">Nulla vitae elit libero, <br/> a pharetra augue mollis interdum.</p>
+                                <p><a className="btn  hvr-hover" href="#">Shop New</a></p>
                             </Carousel.Caption>
                         </div>
                     </Carousel.Item>
                 </Carousel>
-        </>);
+            </>);
     }
 }
-export default ImageCrousal;
+
+export default ImageCarousel;

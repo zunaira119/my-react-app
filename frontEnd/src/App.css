@@ -755,7 +755,7 @@ a.btn.hvr-hover {
 }
 /*------------------------------------------------------------------ Categories Shop -------------------------------------------------------------------*/
  .categories-shop{
-     padding: 70px 0px;
+     padding: 70px 219px;
 }
  .shop-cat-box{
      margin-bottom: 30px;
@@ -812,7 +812,7 @@ a.btn.hvr-hover {
      font-size: 16px;
 }
  .products-box{
-    padding-bottom: 23%;
+    padding: 70px 0px;
 }
  .special-menu{
      margin-bottom: 40px;
@@ -2418,6 +2418,9 @@ button.btn.hvr-hover{
 }
 .crosal-img{
     height: 440px;
+}
+.container{
+    max-width: 1140px !important;
 }
  
 

@@ -23,7 +23,17 @@ productRouter.route('/')
         res.json(product);
     }, (err) => next(err))
     .catch((err) => next(err));
-})
+});
+productRouter.route('/featured')
+.get((req,res,next) => {
+    Products.find({featured:true})
+    .then((products) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(products);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
 // .put((req, res, next) => {
 //     res.statusCode = 403;
 //     res.end('PUT operation not supported on /dishes');

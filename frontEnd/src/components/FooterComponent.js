@@ -17,7 +17,6 @@ class Footer extends Component {
                                             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                                             consequat.
                                         </p>
-
                                     </div>
                                 </div>
                                 <div className="col-lg-4 col-md-12 col-sm-12">
@@ -60,8 +59,6 @@ class Footer extends Component {
                 <div className="footer-copyright">
                     <p claclassNamess="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a></p>
                 </div>
-
-
                 <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
             </div>
         );
