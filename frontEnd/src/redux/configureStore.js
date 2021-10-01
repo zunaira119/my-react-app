@@ -10,7 +10,8 @@ export const ConfigureStore = () => {
         combineReducers({
             categories : Categories,
             products:Products,
-            featureProducts:FeatureProducts
+            featureProducts:FeatureProducts,
+        
         }),  applyMiddleware(thunk, logger)
       
     );

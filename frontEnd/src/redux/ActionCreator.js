@@ -74,7 +74,7 @@ export const addProducts = (products) =>({
   type:ActionTypes.ADD_PRODUCTS,
   payload:products
 });
-
+// featured products
 export const fetchfeaturedProducts = () => (dispatch) => {
   dispatch(featureProductsLoading());
 
@@ -96,6 +96,7 @@ export const fetchfeaturedProducts = () => (dispatch) => {
   .then(featured => dispatch(addFeatured(featured)))
   .catch(error => dispatch(featureProductsFailed(error.message)));
 }
+
 export const addFeatured = (featured) =>({
   type:ActionTypes.ADD_FEATURED,
   payload:featured
@@ -108,29 +109,3 @@ export const featureProductsFailed = (errmess) =>({
   type:ActionTypes.FEATURE_PRODUCTS_FAILED,
   payload:errmess
 });
-// export const fetchSingleProduct = () => (dispatch) => {
-//   dispatch(productsLoading());
-
-//   return fetch(baseUrl + 'products/:productId')
-//   .then(response => {
-//       if (response.ok) {
-//         return response;
-//       } else {
-//         var error = new Error('Error ' + response.status + ': ' + response.statusText);
-//         error.response = response;
-//         throw error;
-//       }
-//     },
-//     error => {
-//           var errmess = new Error(error.message);
-//           throw errmess;
-//     })
-//   .then(response => response.json())
-//   .then(product => dispatch(addSingleProduct(product)))
-//   .catch(error => dispatch(productsFailed(error.message)));
-// }
-
-// export const addSingleProduct = (product) =>({
-//   type:ActionTypes.PRODUCT_DETAIL,
-//   payload:product
-// });

@@ -4,13 +4,17 @@ import Footer from "./FooterComponent";
 import Header from "./HeaderComponent";
 import Home from "./HomeComponent";
 import {connect} from 'react-redux';
+
 import {fetchCategories,fetchProducts,fetchfeaturedProducts} from '../redux/ActionCreator';
+import Product from "./ProductDetailComponent";
+import Images from "./ImagesComponent";
 
 const mapStateToProps = state => {
     return {
         categories: state.categories,
         products:state.products,
-        featured:state.featured
+        featureProducts:state.featureProducts,
+     
     }
 }
 const mapDispatchToProps = dispatch => ({
@@ -23,6 +27,7 @@ const mapDispatchToProps = dispatch => ({
     fetchfeaturedProducts:()=>{
         dispatch(fetchfeaturedProducts())
     },
+   
 });
 
 class Main extends Component {
@@ -34,6 +39,7 @@ class Main extends Component {
         this.props.fetchCategories();
         this.props.fetchProducts();
         this.props.fetchfeaturedProducts();
+       
     }
 
     render() {
@@ -44,7 +50,20 @@ class Main extends Component {
                           categoriesLoading={this.props.categories.isLoading}
                           categoryErrMess={this.props.categories.errMess}
                           products={this.props.products}
+                          featureProducts={this.props.featureProducts}
                         />
+                </>
+            )
+        }
+        const singleProduct = ({match}) => {
+            return (
+                <>
+                <Product
+                product={this.props.products.products.filter((product) => product._id === match.params.productId)[0]}
+                isLoading={this.props.products.isLoading}
+                errMess={this.props.products.errMess}
+                featureProducts={this.props.featureProducts}
+                />
                 </>
             )
         }
@@ -54,6 +73,7 @@ class Main extends Component {
                 <div>
                     <Switch location={this.props.location}>
                         <Route path='/home' component={homePage}/>
+                        <Route path='/product/:productId' component={singleProduct} />
                         {/* <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />
               <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
               <Route path='/menu/:dishId' component={DishWithId} />
@@ -61,7 +81,7 @@ class Main extends Component {
                         <Redirect to="/home"/>
                     </Switch>
                 </div>
-
+             <Images/>
                 <Footer/>
             </div>
         )
