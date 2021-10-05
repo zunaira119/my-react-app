@@ -8,14 +8,14 @@ function RenderCategory({category}) {
     return (
         <>
             <div className="shop-cat-box">
-                <img key={category._id} className="img-fluid" src={baseUrl+category.image} alt={category.name}/>
-                <a className="btn hvr-hover" href="#">{category.name}</a>
+                <img key={category._id} className="img-fluid" src={baseUrl + category.image} alt={category.name}/>
+                <Link className="btn hvr-hover" to={`/products/${category._id}`}>{category.name}</Link>
             </div>
         </>
     );
 }
 
-function RenderProducts({product}) {   
+function RenderProducts({product}) {
     return (
         <>
             <div className="products-single fix">
@@ -26,7 +26,8 @@ function RenderProducts({product}) {
                     <img src={baseUrl + product.image} className="img-fluid" alt="Image"/>
                     <div className="mask-icon">
                         <ul>
-                            <li><Link to={`/product/${product._id}`} data-toggle="tooltip" data-placement="right" title="View"><i
+                            <li><Link to={`/product/${product._id}`} data-toggle="tooltip" data-placement="right"
+                                      title="View"><i
                                 className="fas fa-eye"></i></Link></li>
                             <li><a href="#" data-toggle="tooltip" data-placement="right"
                                    title="Compare"><i className="fas fa-sync-alt"></i></a></li>
@@ -42,7 +43,7 @@ function RenderProducts({product}) {
                 </div>
             </div>
         </>
-        );  
+    );
 }
 
 function Home(props) {
@@ -53,11 +54,11 @@ function Home(props) {
             </div>
         );
     });
-    const feature = props.featureProducts.featureProducts.map((featureProduct)=>{
-        return(
+    const feature = props.featureProducts.featureProducts.map((featureProduct) => {
+        return (
             <div className="col-lg-3 col-md-6 special-grid best-seller">
-                <RenderProducts product = {featureProduct}/>
-                </div>
+                <RenderProducts product={featureProduct}/>
+            </div>
         )
     })
     return (
@@ -82,7 +83,7 @@ function Home(props) {
                     </div>
 
                     <div class="row special-list">
-                     {feature}
+                        {feature}
                     </div>
                 </div>
             </div>

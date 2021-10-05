@@ -1,5 +1,7 @@
 import {createStore, combineReducers,applyMiddleware} from 'redux';
+import { createForms } from 'react-redux-form';
 import { Categories } from './category';
+import { InitialFeedback } from './form';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { Products } from './product';
@@ -11,6 +13,9 @@ export const ConfigureStore = () => {
             categories : Categories,
             products:Products,
             featureProducts:FeatureProducts,
+            ...createForms({
+                feedback: InitialFeedback
+            })
         
         }),  applyMiddleware(thunk, logger)
       

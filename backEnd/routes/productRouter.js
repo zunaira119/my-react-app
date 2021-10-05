@@ -48,13 +48,13 @@ productRouter.route('/featured')
 //     .catch((err) => next(err));    
 // });
 
-productRouter.route('/:productId')
+productRouter.route('/productsByCategory/:id')
 .get((req,res,next) => {
-    Products.findById(req.params.productId)
-    .then((product) => {
+    Products.find({categoryId:req.params.id})
+    .then((products) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
-        res.json(product);
+        res.json(products);
     }, (err) => next(err))
     .catch((err) => next(err));
 });

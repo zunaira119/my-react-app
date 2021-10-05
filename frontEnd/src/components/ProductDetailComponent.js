@@ -1,6 +1,7 @@
 import {baseUrl} from "../shared/baseUrl";
 import OwlCarousel from 'react-owl-carousel';
-import { Loading } from "./LoadingComponent";
+import {Loading} from "./LoadingComponent";
+import {Link} from 'react-router-dom';
 
 function RenderFeatured({prod}) {
     return (
@@ -11,8 +12,9 @@ function RenderFeatured({prod}) {
                     <img src={baseUrl + prod.image} class="img-fluid" alt="Image"/>
                     <div class="mask-icon">
                         <ul>
-                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                   title="View"><i class="fas fa-eye"></i></a></li>
+                            <li><Link to={`/product/${prod._id}`} data-toggle="tooltip" data-placement="right"
+                                      title="View"><i
+                                className="fas fa-eye"></i></Link></li>
                             <li><a href="#" data-toggle="tooltip" data-placement="right"
                                    title="Compare"><i class="fas fa-sync-alt"></i></a></li>
                             <li><a href="#" data-toggle="tooltip" data-placement="right"
@@ -22,8 +24,8 @@ function RenderFeatured({prod}) {
                     </div>
                 </div>
                 <div class="why-text">
-                    <h4>Lorem ipsum dolor sit amet</h4>
-                    <h5> $9.79</h5>
+                    <h4>{prod.name}</h4>
+                    <h5> {prod.price}</h5>
                 </div>
             </div>
 
@@ -32,6 +34,11 @@ function RenderFeatured({prod}) {
 }
 
 function RenderProduct({product}) {
+    let sizeList = Object.keys(product.size).map((k) => {
+        return (
+            <option key={k} value={k}>{product.size[k]}</option>
+        )
+    }, this);
     return (
         <>
             <div class="row">
@@ -40,34 +47,22 @@ function RenderProduct({product}) {
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-6">
                     <div class="single-product-details">
-                        <h2>Fachion Lorem ipsum dolor sit amet</h2>
+                        <h2>{product.name}</h2>
                         <h5>
                             <del>$ 60.00</del>
-                            $40.79
+                            {product.price}
                         </h5>
                         <p class="available-stock"><span> More than 20 available / <a
                             href="#">8 sold </a></span>
                         </p>
                         <h4>Short Description:</h4>
-                        <p>Nam sagittis a augue eget scelerisque. Nullam lacinia consectetur sagittis. Nam sed
-                            neque id eros fermentum dignissim quis at tortor. Nullam ultricies urna quis sem
-                            sagittis pharetra. Nam erat turpis, cursus in ipsum at,
-                            tempor imperdiet metus. In interdum id nulla tristique accumsan. Ut semper in quam
-                            nec pretium. Donec egestas finibus suscipit. Curabitur tincidunt convallis
-                            arcu. </p>
+                        <p>{product.discription}</p>
                         <ul>
                             <li>
-                                <div class="form-group size-st">
-                                    <label class="size-label">Size</label>
-                                    <select id="basic" class="selectpicker show-tick form-control">
-                                        <option value="0">Size</option>
-                                        <option value="0">S</option>
-                                        <option value="1">M</option>
-                                        <option value="1">L</option>
-                                        <option value="1">XL</option>
-                                        <option value="1">XXL</option>
-                                        <option value="1">3XL</option>
-                                        <option value="1">4XL</option>
+                                <div className="form-group size-st">
+                                    <label className="size-label">Size</label>
+                                    <select id="basic" name="size" className=" form-control">
+                                        {sizeList}
                                     </select>
                                 </div>
                             </li>
@@ -104,58 +99,58 @@ const Product = (props) => {
         )
     });
     if (props.isLoading) {
-        return(
+        return (
             <div className="container">
-                <div className="row">            
-                    <Loading />
+                <div className="row">
+                    <Loading/>
                 </div>
             </div>
         );
-    }
-    else if (props.errMess) {
-        return(
+    } else if (props.errMess) {
+        return (
             <div className="container">
-                <div className="row">            
+                <div className="row">
                     <h4>{props.errMess}</h4>
                 </div>
             </div>
         );
-    }  else if(props.product != null){
-    return (
-        <>
-            <div class="all-title-box">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h2>Product Detail</h2>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="#">Products</a></li>
-                                <li class="breadcrumb-item active">Product Detail</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="shop-detail-box-main">
-                <div class="container">
-                    <RenderProduct product={props.product}/>
-                    <div class="row my-5">
-                        <div class="col-lg-12">
-                            <div class="title-all text-center">
-                                <h1>Featured Products</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+    } else if (props.product != null) {
+        return (
+            <>
+                <div class="all-title-box">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h2>Product Detail</h2>
+                                <ul class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Products</a></li>
+                                    <li class="breadcrumb-item active">Product Detail</li>
+                                </ul>
                             </div>
-                            <OwlCarousel margin={3} autoplay={true} items={4} loop
-                                         class="featured-products-box owl-carousel owl-theme">
-                                {feature}
-                            </OwlCarousel>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </>
-    );
+                <div class="shop-detail-box-main">
+                    <div class="container">
+                        <RenderProduct product={props.product}/>
+                        <div class="row my-5">
+                            <div class="col-lg-12">
+                                <div class="title-all text-center">
+                                    <h1>Featured Products</h1>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus
+                                        enim.</p>
+                                </div>
+                                <OwlCarousel margin={3} autoplay={true} items={4} loop
+                                             class="featured-products-box owl-carousel owl-theme">
+                                    {feature}
+                                </OwlCarousel>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </>
+        );
     }
 }
 export default Product;
