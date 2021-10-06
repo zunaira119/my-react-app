@@ -6,11 +6,14 @@ import Home from "./HomeComponent";
 import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 
-import {fetchCategories, fetchProducts, fetchfeaturedProducts} from '../redux/ActionCreator';
+import {fetchCategories, fetchProducts, fetchfeaturedProducts,postFeedback} from '../redux/ActionCreator';
 import Product from "./ProductDetailComponent";
 import Products from "./ProductsComponent";
+import AllProducts from "./AllProductsComponent";
 import Images from "./ImagesComponent";
 import ContactUs from "./ContactUsComponent";
+import AboutUs from "./AboutUsComponent";
+import Cart from "./CartComponent";
 
 const mapStateToProps = state => {
     return {
@@ -30,6 +33,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(fetchfeaturedProducts())
     },
     resetFeedbackForm: () => { dispatch(actions.reset('feedback'))},
+    postFeedback: (feedback) => dispatch(postFeedback(feedback)),
 });
 
 class Main extends Component {
@@ -89,7 +93,12 @@ class Main extends Component {
                         <Route path='/home' component={homePage}/>
                         <Route path='/product/:productId' component={singleProduct}/>
                         <Route path='/products/:categoryId' component={categoryProducts}/>
-                        <Route exact path='/contactUs' component={() => <ContactUs resetFeedbackForm={this.props.resetFeedbackForm}/>}/>
+                        <Route exact path='/contactUs' component={() => <ContactUs resetFeedbackForm={this.props.resetFeedbackForm} postFeedback = {this.props.postFeedback} />}/>
+                        <Route exact path='/products' component={()=> <AllProducts products ={this.props.products} 
+                        categories={this.props.categories} 
+                       />}/>
+                       <Route exact path= '/aboutUs' component={()=> <AboutUs/>}/>
+                       <Route exact path= '/cart' component={()=> <Cart/>}/>
                         {/* <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />
               <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes} />} />
               <Route path='/menu/:dishId' component={DishWithId} />

@@ -1,6 +1,6 @@
 import {Component} from "react";
 import {Control, Form, Errors} from 'react-redux-form';
-import {Button, Row, Col, Label} from 'reactstrap';
+import {Button} from 'reactstrap';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -14,9 +14,9 @@ class ContactUs extends Component {
     }
 
     handleSubmit(values) {
-        console.log('Current State is: ' + JSON.stringify(values));
+        // console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
-        // this.props.postFeedback(values);
+        this.props.postFeedback(values);
         this.props.resetFeedbackForm();
         // event.preventDefault();
     }
@@ -126,11 +126,10 @@ class ContactUs extends Component {
                                                         className="text-danger"
                                                         model=".subject"
                                                         show="touched"
-                                                        messages={{
+                                                        messages={{ 
                                                             required: 'Required'
                                                         }}
                                                     />
-
                                                 </div>
                                             </div>
                                             <div className="col-md-12">

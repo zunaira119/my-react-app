@@ -6,7 +6,18 @@ import {
 } from 'reactstrap';
 import {NavLink, Link} from 'react-router-dom';
 class Header extends Component {
-
+    constructor(props) {
+        super(props);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.state = {
+            isModalOpen: false
+        };
+      }
+      toggleModal() {
+        this.setState({
+          isModalOpen: !this.state.isModalOpen
+        });
+      }
     render() {
         return (
 
@@ -33,22 +44,19 @@ class Header extends Component {
                                     <NavLink className="nav-link" to='/aboutUs'>About Us</NavLink>
                                 </NavItem>
                                 <NavItem className="nav-item">
-                                    <NavLink to="/products" className="nav-link ">Product</NavLink>
+                                    <NavLink to="/products" className="nav-link ">Products</NavLink>
 
                                 </NavItem>
                                 <NavItem className="dropdown">
                                     <a href="#" className="nav-link dropdown-toggle arrow"
                                        data-toggle="dropdown">SHOP</a>
                                     <ul className="dropdown-menu">
-                                        <li><a href="cart.html">Cart</a></li>
+                                        <li><Link to="/cart">Cart</Link></li>
                                         <li><a href="checkout.html">Checkout</a></li>
                                         <li><a href="my-account.html">My Account</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="shop-detail.html">Shop Detail</a></li>
                                     </ul>
                                 </NavItem>
-                                <NavItem className="nav-item"><NavLink className="nav-link" to='/ourServices'>Our
-                                    Service</NavLink></NavItem>
                                 <NavItem className="nav-item"><NavLink className="nav-link" to='/contactUs'>Contact
                                     Us</NavLink></NavItem>
                             </Nav>
@@ -56,10 +64,10 @@ class Header extends Component {
                         <div className="attr-nav">
                             <ul>
                                 <li className="search"><a href="#"><i className="fa fa-search"></i></a></li>
-                                <li className="side-menu"><a href="#">
+                                <li className="side-menu"><Link to="/cart">
                                     <i className="fa fa-shopping-bag"></i>
                                     <span className="badge">3</span>
-                                </a></li>
+                                </Link></li>
                             </ul>
                         </div>
                     </div>

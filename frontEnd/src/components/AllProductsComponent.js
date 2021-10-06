@@ -30,7 +30,8 @@ function RenderProduct({product}) {
         </div>
     );
 }
-const Products = (props) =>{
+
+const AllProducts = (props) => {
     const categories = props.categories.categories.map((category) => {
         return (
             <div>
@@ -41,29 +42,29 @@ const Products = (props) =>{
             </div>
         );
     });
-    const products = props.products.map((k) => {
+    const products = props.products.products.map((k) => {
         return (
-            <div className="col-sm-6 col-md-6 col-lg-4 col-xl-4" >
+            <div className="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                 <RenderProduct product={k}/>
-             </div>
+            </div>
         )
     }, this);
-        return (
-            <>
-       <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Products</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Products</li>
-                    </ul>
+    return (
+        <>
+            <div class="all-title-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2>Products</h2>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Products</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div className="shop-box-inner">
+            <div className="shop-box-inner">
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
@@ -100,4 +101,4 @@ const Products = (props) =>{
     )
 
 }
-export default Products;
+export default AllProducts;
