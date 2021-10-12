@@ -110,11 +110,11 @@ export const featureProductsFailed = (errmess) =>({
   payload:errmess
 });
 
+// post feed back
 export const postFeedback = (feedback) => (dispatch) => {
   // newComment.date = new Date().toISOString();
   console.log(JSON.stringify(feedback));
   return fetch(baseUrl + 'contactUs', {
-    mode:'cors',
       method: "POST",
       body: JSON.stringify(feedback),
       headers: {
@@ -144,3 +144,5 @@ export const addFeedback = (feedback) => ({
   type: ActionTypes.ADD_FEEDBACK,
   payload: feedback
 });
+
+// register user 

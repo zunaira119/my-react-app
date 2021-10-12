@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('./cors');
+// const cors = require('./cors');
 const mongoose = require('mongoose');
 const ContactUs = require('../models/contactUs');
 const contactUsRouter = express.Router();
 contactUsRouter.use(bodyParser.json());
 contactUsRouter.route('/')
-.post(cors.corsWithOptions,(req, res, next) => {
+.post((req, res, next) => {
     ContactUs.create(req.body)
     .then((contact) => {
         console.log('Category Created ', contact);
