@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const Users = require('../models/user');
 const authenticate = require('../authenticate');
+const auth = require('../middleware/auth');
 var router = express.Router();
 router.use(bodyParser.json());
 
@@ -15,29 +17,6 @@ router.use(bodyParser.json());
             }, (err) => next(err))
             .catch((err) => next(err));
     });
-
-
-    // router.post('/signup', (req, res, next) => {
-    //   User.findOne({username: req.body.username})
-    //   .then((user) => {
-    //     if(user != null) {
-    //       var err = new Error('User ' + req.body.username + ' already exists!');
-    //       err.status = 403;
-    //       next(err);
-    //     }
-    //     else {
-    //       return User.create({
-    //         username: req.body.username,
-    //         password: req.body.password});
-    //     }
-    //   })
-    //   .then((user) => {
-    //     res.statusCode = 200;
-    //     res.setHeader('Content-Type', 'application/json');
-    //     res.json({status: 'Registration Successful!', user: user});
-    //   }, (err) => next(err))
-    //   .catch((err) => next(err));
-    // });
    router .post('/signup', (req, res, next) => {
         Users.findOne({email: req.body.email})
         .then((user) => {
@@ -61,32 +40,59 @@ router.use(bodyParser.json());
     });
    router.post('/login', (req, res, next) => {
 
-        const {email, password} = req.body
-
         Users.findOne({email: req.body.email})
         .then((user) => {
-          console.log(user,req.body.password);
             if (user === null) {
                 var err = new Error('User ' + email + ' does not exist!');
                 err.status = 403;
                 next(err);
-            } else if (user.password != user.matchPassword(req.body.password)) {
-                var err = new Error('Your password is incorrect!');
-                err.status = 403;
-               next(err);
-            } else if (user.email === email && user.matchPassword(req.body.password)) {
-                res.status(201).json({
-                    _id: user._id,
-                    email: user.email,
-                    token: authenticate.getToken(user),
-                });
-                res.setHeader('Content-Type', 'text/plain');
-                res.end('You are authenticated!');
+            } else {
+              bcrypt.compare(req.body.password, user.password, function(err, results){
+                if(err){
+                    throw new Error(err)
+                 }
+                 if (results) {
+                    return res.json({ success:true,
+                              _id: user._id,
+                              firstname: user.firstname,
+                              lastname:user.lastname,
+                              token: authenticate.getToken(user) });
+                } else {
+                    return res.status(401).json({ msg: "Invalid credentials" })
+                }
+               });
             }
-
         }, (err) => next(err)).catch((err) => next(err));
     });
-
+    router.get('/:userId',(req,res,next) => {
+        Users.findById(req.params.userId).select('-password')
+        .then((user) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(user);
+        }, (err) => next(err))
+        .catch((err) => next(err));
+    });
+    router.put('/update/:userId',(req, res, next) => {
+      Users.findByIdAndUpdate(req.params.userId, {
+          $set: req.body
+      }, { new: true })
+      .then((user) => {
+          res.statusCode = 200;
+          res.setHeader('Content-Type', 'application/json');
+          res.json(user);
+      }, (err) => next(err))
+      .catch((err) => next(err));
+  });
+  router.delete('/:userId',(req, res, next) => {
+    Users.findByIdAndRemove(req.params.userId)
+    .then((resp) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(resp);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+});
 
 // router.post('/login', (req, res, next) => {
 

@@ -4,3 +4,10 @@ export const InitialFeedback = {
     subject: '',
     message: ''
 };
+
+export const RegisterForm = {
+    firstname:'',
+    lastname: '',
+    email:'',
+    password:''
+}

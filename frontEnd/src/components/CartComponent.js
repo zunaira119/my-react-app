@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Cart extends Component{
     render(){
@@ -163,7 +164,7 @@ class Cart extends Component{
                         </div>
                         <hr/> </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a href="checkout.html" class="ml-auto btn hvr-hover">Checkout</a> </div>
+                <div class="col-12 d-flex shopping-box"><Link to="/checkout" class="ml-auto btn hvr-hover">Checkout</Link> </div>
             </div>
 
         </div>

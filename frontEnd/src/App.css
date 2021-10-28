@@ -2422,6 +2422,17 @@ button.btn.hvr-hover{
 .container{
     max-width: 1140px !important;
 }
+button.btn.hvr-hover {
+    color: white;
+}
+img.sb-avatar__image {
+    margin-top: 20px;
+}
+.user-name{
+    margin-top: 20px;
+
+}
+
  
 
 

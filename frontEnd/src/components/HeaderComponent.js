@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Avatar from 'react-avatar';
 import {
     Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron,
     Button, Modal, ModalHeader, ModalBody,
@@ -8,16 +9,14 @@ import {NavLink, Link} from 'react-router-dom';
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.toggleModal = this.toggleModal.bind(this);
-        this.state = {
-            isModalOpen: false
-        };
+        this.handleLogout = this.handleLogout.bind(this);
+      
       }
-      toggleModal() {
-        this.setState({
-          isModalOpen: !this.state.isModalOpen
-        });
-      }
+      handleLogout() {
+        this.props.logoutUser();
+    }
+
+     
     render() {
         return (
 
@@ -53,8 +52,6 @@ class Header extends Component {
                                     <ul className="dropdown-menu">
                                         <li><Link to="/cart">Cart</Link></li>
                                         <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
                                     </ul>
                                 </NavItem>
                                 <NavItem className="nav-item"><NavLink className="nav-link" to='/contactUs'>Contact
@@ -68,6 +65,20 @@ class Header extends Component {
                                     <i className="fa fa-shopping-bag"></i>
                                     <span className="badge">3</span>
                                 </Link></li>
+                                { this.props.auth.isAuthenticated == true ?
+                                <Nav className="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                                <NavItem className="dropdown">
+                                    <a href="#" className="nav-link "
+                                       data-toggle="dropdown">{this.props.auth.user.firstname + ' ' + this.props.auth.user.lastname}</a>
+                                    <ul className="dropdown-menu">
+                                        <li><Link to="/cart">Profile</Link></li>
+                                        <li><Link to="/whishlist">Wishlist</Link></li>
+                                        <li><a  href="#" onClick={this.handleLogout}>Log out</a></li>
+                                    </ul>
+                                </NavItem> 
+                                </Nav>:
+                                " "
+    }
                             </ul>
                         </div>
                     </div>

@@ -15,7 +15,9 @@ function RenderCategory({category}) {
     );
 }
 
-function RenderProducts({product}) {
+function RenderProducts({product, postFavorite,favorites}) {
+  
+    let favorite = favorites == false ? false: favorites != null ? favorites[0].products.some((fav) => fav._id === product._id) : false;
     return (
         <>
             <div className="products-single fix">
@@ -31,8 +33,19 @@ function RenderProducts({product}) {
                                 className="fas fa-eye"></i></Link></li>
                             <li><a href="#" data-toggle="tooltip" data-placement="right"
                                    title="Compare"><i className="fas fa-sync-alt"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                   title="Add to Wishlist"><i className="far fa-heart"></i></a></li>
+                            <li>
+                                {/* <a href="#" data-toggle="tooltip" data-placement="right"
+                                   title="Add to Wishlist"><i className="far fa-heart"></i></a> */}
+
+                            <a href="#" outline color="primary" onClick={() => favorite ? console.log('Already favorite') :  postFavorite(product._id)}>
+                                    {favorite ?
+                                       <i className="fa fa-heart"></i>
+                                        : 
+                                        <i className="far fa-heart"></i>
+                                    }
+                                </a>
+                                   
+                                   </li>
                         </ul>
                         <a className="cart" href="#">Add to Cart</a>
                     </div>
@@ -49,15 +62,16 @@ function RenderProducts({product}) {
 function Home(props) {
     const category = props.categories.categories.map((category) => {
         return (
-            <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12" key={category._id}>
+            <div key={category._id} className="col-lg-4 col-md-4 col-sm-12 col-xs-12" key={category._id}>
                 <RenderCategory category={category}/>
             </div>
         );
     });
     const feature = props.featureProducts.featureProducts.map((featureProduct) => {
+        
         return (
-            <div className="col-lg-3 col-md-6 special-grid best-seller">
-                <RenderProducts product={featureProduct}/>
+            <div key={featureProduct._id} className="col-lg-3 col-md-6 special-grid best-seller">
+                <RenderProducts product={featureProduct} postFavorite={props.postFavorite} favorites={props.favorites== false ? props.favorites : props.favorites.favorites}/>
             </div>
         )
     })

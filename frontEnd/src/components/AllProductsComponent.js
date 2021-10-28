@@ -44,7 +44,7 @@ const AllProducts = (props) => {
     });
     const products = props.products.products.map((k) => {
         return (
-            <div className="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+            <div key={k._id} className="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                 <RenderProduct product={k}/>
             </div>
         )

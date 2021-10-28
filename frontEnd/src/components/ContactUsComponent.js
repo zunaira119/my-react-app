@@ -140,9 +140,9 @@ class ContactUs extends Component {
                                                     <div className="help-block with-errors"></div>
                                                 </div>
                                                 <div className="submit-button text-center">
-                                                    <Button class="btn hvr-hover" id="submit" type="submit">Send
+                                                    <button class="btn hvr-hover" id="submit" type="submit">Send
                                                         Message
-                                                    </Button>
+                                                    </button>
                                                     <div id="msgSubmit" class="h3 text-center hidden"></div>
                                                     <div class="clearfix"></div>
                                                 </div>

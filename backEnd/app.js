@@ -15,6 +15,7 @@ var usersRouter = require('./routes/users');
 var categoryRouter = require('./routes/categoryRouter');
 var productRouter = require('./routes/productRouter');
 var contactUsRouter = require('./routes/contactUsRouter');
+var favoritesRouter = require('./routes/favoriteRouter');
 
 
 
@@ -34,6 +35,7 @@ app.use('/users', usersRouter);
 app.use('/categories',categoryRouter);
 app.use('/products',productRouter);
 app.use('/contactUs',contactUsRouter);
+app.use('/favorites',favoritesRouter)
 
 connect.then((db) => {
   console.log("Connected correctly to server");
