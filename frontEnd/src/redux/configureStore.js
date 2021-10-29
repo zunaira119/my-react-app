@@ -8,6 +8,7 @@ import { Products } from './product';
 import { Auth } from './auth';
 import { FeatureProducts } from './featureProduct';
 import { favorites } from './favorites';
+import {cartItems} from './cart';
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -17,6 +18,7 @@ export const ConfigureStore = () => {
             featureProducts:FeatureProducts,
             auth: Auth,
             favorites,
+            cartItems,
             ...createForms({
                 feedback: InitialFeedback,
                 userData : RegisterForm

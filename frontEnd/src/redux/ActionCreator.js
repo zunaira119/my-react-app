@@ -374,3 +374,105 @@ export const addFavorites = (favorites) => ({
   payload: favorites
 });
 
+export const postCart = (productId) => (dispatch) => {
+
+  const bearer = 'Bearer ' + localStorage.getItem('token');
+
+  return fetch(baseUrl + 'cart', {
+      method: "POST",
+      body: JSON.stringify({"_id": productId}),
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': bearer
+      },
+      credentials: "same-origin"
+  })
+  .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        var error = new Error('Error ' + response.status + ': ' + response.statusText);
+        error.response = response;
+        throw error;
+      }
+    },
+    error => {
+          throw error;
+    })
+  .then(response => response.json())
+  .then(cartItems => { console.log('Favorite Added', cartItems); dispatch(addFavorites(cartItems)); })
+  .catch(error => dispatch(favoritesFailed(error.message)));
+}
+
+// export const deleteFavorite = (productId) => (dispatch) => {
+
+//   const bearer = 'Bearer ' + localStorage.getItem('token');
+
+//   return fetch(baseUrl + 'favorites/' + productId, {
+//       method: "DELETE",
+//       headers: {
+//         'Authorization': bearer
+//       },
+//       credentials: "same-origin"
+//   })
+//   .then(response => {
+//       if (response.ok) {
+//         return response;
+//       } else {
+//         var error = new Error('Error ' + response.status + ': ' + response.statusText);
+//         error.response = response;
+//         throw error;
+//       }
+//     },
+//     error => {
+//           throw error;
+//     })
+//   .then(response => response.json())
+//   .then(favorites => { console.log('Favorite Deleted', favorites); dispatch(addFavorites(favorites)); })
+//   .catch(error => dispatch(favoritesFailed(error.message)));
+// };
+
+export const fetchCartItems = () => (dispatch) => {
+  dispatch(cartLoading(true));
+
+  const bearer = 'Bearer ' + localStorage.getItem('token');
+
+  return fetch(baseUrl + 'cart', {
+      headers: {
+          'Authorization': bearer
+      },
+  })
+  .then(response => {
+    console.log(response);
+      if (response.ok) {
+          return response;
+      }
+      else {
+          var error = new Error('Error ' + response.status + ': ' + response.statusText);
+          error.response = response;
+          throw error;
+      }
+  },
+  error => {
+      var errmess = new Error(error.message);
+      throw errmess;
+  })
+  .then(response => response.json())
+  .then(cartItems => dispatch(addToCart(cartItems)))
+  .catch(error => dispatch(cartFailed(error.message)));
+}
+
+export const cartLoading = () => ({
+  type: ActionTypes.CART_LOADING
+});
+
+export const cartFailed = (errmess) => ({
+  type: ActionTypes.CART_FAILED,
+  payload: errmess
+});
+
+export const addToCart = (cartItems) => ({
+  type: ActionTypes.ADD_TO_CART,
+  payload: cartItems
+});
+

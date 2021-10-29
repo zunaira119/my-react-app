@@ -16,9 +16,7 @@ var categoryRouter = require('./routes/categoryRouter');
 var productRouter = require('./routes/productRouter');
 var contactUsRouter = require('./routes/contactUsRouter');
 var favoritesRouter = require('./routes/favoriteRouter');
-
-
-
+var cartRouter = require('./routes/cartRouter');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +33,8 @@ app.use('/users', usersRouter);
 app.use('/categories',categoryRouter);
 app.use('/products',productRouter);
 app.use('/contactUs',contactUsRouter);
-app.use('/favorites',favoritesRouter)
+app.use('/favorites',favoritesRouter);
+app.use('/cart',cartRouter);
 
 connect.then((db) => {
   console.log("Connected correctly to server");

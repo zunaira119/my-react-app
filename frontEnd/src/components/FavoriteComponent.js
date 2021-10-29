@@ -11,24 +11,24 @@ class Favorite extends Component{
                 <tr>
                  <td class="thumbnail-img">
                                         <a href="#">
-									<img class="img-fluid" src={baseUrl + favorite.image} alt="" />
+									<img className="img-fluid" src={baseUrl + favorite.image} alt="" />
 								</a>
                                     </td>
-                                    <td class="name-pr">
+                                    <td className="name-pr">
                                         <a href="#">
 									{favorite.name}
 								</a>
                                     </td>
-                                    <td class="price-pr">
+                                    <td className="price-pr">
                                         <p>{favorite.price}</p>
                                     </td>
-                                    <td class="quantity-box">In Stock</td>
-                                    <td class="add-pr">
-                                        <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                    <td className="quantity-box">In Stock</td>
+                                    <td className="add-pr">
+                                        <a className="btn hvr-hover" href="#">Add to Cart</a>
                                     </td>
-                                    <td class="remove-pr">
+                                    <td className="remove-pr">
                                         <a href="#" >
-									<i class="fas fa-times"></i>
+									<i className="fas fa-times"></i>
 								</a>
                                     </td>
                                     </tr>
@@ -37,25 +37,25 @@ class Favorite extends Component{
         });
         return(
             <>
-              <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
+              <div className="all-title-box">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-12">
                     <h2>Wishlist</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active">Wishlist</li>
+                    <ul className="breadcrumb">
+                        <li className="breadcrumb-item"><a href="#">Shop</a></li>
+                        <li className="breadcrumb-item active">Wishlist</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="wishlist-box-main">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="table-main table-responsive">
-                        <table class="table">
+    <div className="wishlist-box-main">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-12">
+                    <div className="table-main table-responsive">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th>Images</th>
@@ -69,9 +69,7 @@ class Favorite extends Component{
                             <tbody>
                              
                                  {fav}
-                               
-                               
-                              
+                        
                             </tbody>
                         </table>
                     </div>

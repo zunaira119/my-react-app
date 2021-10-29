@@ -6,7 +6,7 @@ import Home from "./HomeComponent";
 import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 
-import {fetchCategories, fetchProducts, fetchfeaturedProducts,postFeedback,loginUser,registerUser,logoutUser,postFavorite,fetchFavorites} from '../redux/ActionCreator';
+import {fetchCategories, fetchProducts, fetchfeaturedProducts,postFeedback,loginUser,registerUser,logoutUser,postFavorite,fetchFavorites,postCart} from '../redux/ActionCreator';
 import Product from "./ProductDetailComponent";
 import Products from "./ProductsComponent";
 import AllProducts from "./AllProductsComponent";
@@ -24,6 +24,7 @@ const mapStateToProps = state => {
         featureProducts: state.featureProducts,
         auth:state.auth,
         favorites: state.favorites,
+        cartItems:state.cartItems
     }
 }
 const mapDispatchToProps = dispatch => ({
@@ -43,6 +44,7 @@ const mapDispatchToProps = dispatch => ({
     logoutUser: () => dispatch(logoutUser()),
     postFavorite: (productId) => dispatch(postFavorite(productId)),
     fetchFavorites:() =>dispatch(fetchFavorites()),
+    postCart: (productId) => dispatch(postCart(productId)),
     // deleteFavorite:(productId)=>dispatch(deleteFavorite(productId)),
 });
 
@@ -93,6 +95,7 @@ class Main extends Component {
                           featureProducts={this.props.featureProducts}
                           favorites={false}
                           postFavorite={this.props.postFavorite}
+                          postCart={this.props.postCart}
                     />
             )
         }
