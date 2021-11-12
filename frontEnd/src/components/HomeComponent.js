@@ -14,8 +14,7 @@ function RenderCategory({category}) {
         </>
     );
 }
-
-function RenderProducts({product, postFavorite,favorites}) {
+function RenderProducts({product, postFavorite,favorites,postCart,user}) {
   
     let favorite = favorites == false ? false: favorites != null ? favorites[0].products.some((fav) => fav._id === product._id) : false;
     return (
@@ -37,7 +36,7 @@ function RenderProducts({product, postFavorite,favorites}) {
                                 {/* <a href="#" data-toggle="tooltip" data-placement="right"
                                    title="Add to Wishlist"><i className="far fa-heart"></i></a> */}
 
-                            <a href="#" outline color="primary" onClick={() => favorite ? console.log('Already favorite') :  postFavorite(product._id)}>
+                            <a href="#" outline color="primary" onClick={() => favorite ? alert('Already favorite') :  postFavorite(product._id)}>
                                     {favorite ?
                                        <i className="fa fa-heart"></i>
                                         : 
@@ -47,7 +46,8 @@ function RenderProducts({product, postFavorite,favorites}) {
                                    
                                    </li>
                         </ul>
-                        <a className="cart" href="#">Add to Cart</a>
+                        <a className="cart" href="#" onClick={() => user ? postCart(product._id) : alert('You are not logged In ')}>Add to Cart</a>
+                    
                     </div>
                 </div>
                 <div className="why-text">
@@ -71,7 +71,7 @@ function Home(props) {
         
         return (
             <div key={featureProduct._id} className="col-lg-3 col-md-6 special-grid best-seller">
-                <RenderProducts product={featureProduct} postFavorite={props.postFavorite} favorites={props.favorites== false ? props.favorites : props.favorites.favorites}/>
+                <RenderProducts product={featureProduct} postFavorite={props.postFavorite} favorites={props.favorites== false ? props.favorites : props.favorites.favorites} postCart={props.postCart} user={props.user}/>
             </div>
         )
     })

@@ -13,7 +13,6 @@ cartRouter.route('/')
 .all(authenticate)
 // get all
 .get(function(req, res, next) {
-    console.log(req.user);
   Cart.find({postedBy: req.user._id})
   .populate('postedBy products')
   .then((cart) => {
@@ -25,7 +24,6 @@ cartRouter.route('/')
 })
 // Add to favourites
 .post(function(req, res, next) {
-   console.log(req.user._id);
   var productId = req.body._id;
   var userId = req.user._id;
 

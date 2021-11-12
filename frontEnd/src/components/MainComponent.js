@@ -6,7 +6,7 @@ import Home from "./HomeComponent";
 import {connect} from 'react-redux';
 import { actions } from 'react-redux-form';
 
-import {fetchCategories, fetchProducts, fetchfeaturedProducts,postFeedback,loginUser,registerUser,logoutUser,postFavorite,fetchFavorites,postCart} from '../redux/ActionCreator';
+import {fetchCategories, fetchProducts, fetchfeaturedProducts,postFeedback,loginUser,registerUser,logoutUser,postFavorite,fetchFavorites,postCart,fetchCartItems} from '../redux/ActionCreator';
 import Product from "./ProductDetailComponent";
 import Products from "./ProductsComponent";
 import AllProducts from "./AllProductsComponent";
@@ -45,6 +45,7 @@ const mapDispatchToProps = dispatch => ({
     postFavorite: (productId) => dispatch(postFavorite(productId)),
     fetchFavorites:() =>dispatch(fetchFavorites()),
     postCart: (productId) => dispatch(postCart(productId)),
+    fetchCartItems:() =>dispatch(fetchCartItems()),
     // deleteFavorite:(productId)=>dispatch(deleteFavorite(productId)),
 });
 
@@ -58,11 +59,13 @@ class Main extends Component {
         this.props.fetchProducts();
         this.props.fetchfeaturedProducts();
         this.props.fetchFavorites();
+        this.props.fetchCartItems();
         // this.props.deleteFavorite();
 
     }
 
     render() {
+        console.log(this.props.cartItems);
         const categoryProducts = ({match}) => {
             return (
                 <>
@@ -86,6 +89,8 @@ class Main extends Component {
                           featureProducts={this.props.featureProducts}
                           favorites={this.props.favorites}
                           postFavorite={this.props.postFavorite}
+                          user={this.props.auth.isAuthenticated}
+                          postCart={this.props.postCart}
                     />
                     :
                     <Home categories={this.props.categories}
@@ -96,6 +101,7 @@ class Main extends Component {
                           favorites={false}
                           postFavorite={this.props.postFavorite}
                           postCart={this.props.postCart}
+                          user={false}
                     />
             )
         }
@@ -122,9 +128,12 @@ class Main extends Component {
             )} />
           );
         return (
+        
             <div>
                 <Header auth={this.props.auth}
                    logoutUser={this.props.logoutUser} 
+                    loginUser={this.props.loginUser} 
+                    registerUser = {this.props.registerUser}
                    />
                 <div>
                     <Switch location={this.props.location}>
@@ -137,10 +146,8 @@ class Main extends Component {
                        />}/>
                        <Route exact path= '/aboutUs' component={()=> <AboutUs/>}/>
                        <PrivateRoute exact path="/whishlist" component={() => <Favorite  favorites={this.props.favorites}  />} />
-                       <Route exact path= '/cart' component={()=> <Cart/>}/>
-                       <Route exact path= '/checkout' component={()=> <CheckOut  auth={this.props.auth} 
-                                                loginUser={this.props.loginUser} 
-                                                registerUser = {this.props.registerUser}
+                       <PrivateRoute exact path= '/cart' component={()=> <Cart    cartItems={this.props.cartItems}/>}/>
+                       <Route exact path= '/checkout' component={()=> <CheckOut    cartItems={this.props.cartItems}
                                                    />}/>
 
                         {/* <Route exact path='/aboutus' component={() => <About leaders={this.props.leaders} />} />

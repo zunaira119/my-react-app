@@ -4,6 +4,7 @@ class Favorite extends Component{
     constructor(props) {
         super(props);
       }
+      
     render(){
         const fav = this.props.favorites.favorites[0].products.map((favorite) => {
             return(

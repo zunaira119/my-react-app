@@ -15,7 +15,7 @@ class ContactUs extends Component {
 
     handleSubmit(values) {
         // console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        // alert('Current State is: ' + JSON.stringify(values));
         this.props.postFeedback(values);
         this.props.resetFeedbackForm();
         // event.preventDefault();
@@ -68,7 +68,7 @@ class ContactUs extends Component {
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed odio justo, ultrices
                                         ac nisl sed, lobortis porta elit. Fusce in metus ac ex venenatis ultricies at
                                         cursus mauris.</p>
-                                    <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
+                                    <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)} >
                                         <div className="row">
                                             <div className="col-md-12">
                                                 <div className="form-group">

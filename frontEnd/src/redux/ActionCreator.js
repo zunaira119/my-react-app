@@ -113,7 +113,6 @@ export const featureProductsFailed = (errmess) =>({
 // post feed back
 export const postFeedback = (feedback) => (dispatch) => {
   // newComment.date = new Date().toISOString();
-  console.log(JSON.stringify(feedback));
   return fetch(baseUrl + 'contactUs', {
       method: "POST",
       body: JSON.stringify(feedback),
@@ -123,7 +122,6 @@ export const postFeedback = (feedback) => (dispatch) => {
       credentials: "same-origin"
   })
   .then(response => {
-    console.log(response);
       if (response.ok) {
         return response;
       } else {
@@ -137,7 +135,7 @@ export const postFeedback = (feedback) => (dispatch) => {
     })
   .then(response => response.json())
   .then(response => dispatch(addFeedback(response)))
-  .catch(error =>  { console.log('post feedback', error.message); alert('Your feedback could not be posted\nError: '+error.message); });
+  .catch(error =>  { error.message != null ? alert('Your feedback could not be posted\nError: '+error.message) : alert('Your message Sent successfully'); });
 };
 
 export const addFeedback = (feedback) => ({

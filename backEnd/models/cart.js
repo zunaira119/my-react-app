@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+require('mongoose-currency').loadType(mongoose);
+const Currency = mongoose.Types.Currency;
 
 var cartSchema = new Schema({
   postedBy: {
@@ -10,6 +12,15 @@ var cartSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
       ref: "Products"
   }],
+  quantity:{
+    type: Number,
+    min:1,
+    default:1
+  },
+  total:{
+    type: Currency,
+    default:0.0
+  }
 }, {
     timestamps: true
 });
